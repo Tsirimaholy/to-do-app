@@ -3,25 +3,58 @@ import Box from "./component/box";
 
 class App extends React.Component {
     state = {
-        toDo: [{title: 'some task', description: 'No description'}],
-        doing: [{title: 'sonme task@', description: 'hbfhsabfjsnbfjsh'}],
-        done: [{title: 'exercice', description: 'hbfhsabfjsnbfjsh hsgjgj'}]
+        'toDo': [
+            { title: "Implement React with TSX", description: "NULL" },
+            { title: "Implement React with TSX", description: "NULL" },
+            { title: "Implement React with TSX", description: "NULL" },
+            { title: "Implement React with TSX", description: "NULL" },
+            { title: "Implement React with TSX", description: "NULL" },
+            { title: "Implement React with TSX", description: "NULL" },
+            { title: "Implement React with TSX", description: "NULL" },
+            { title: "Implement React with TSX", description: "NULL" },
+        ],
+        'doing': [
+            { title: "Implement React with TSX", description: "NULL" },
+            { title: "Implement React with TSX", description: "NULL" },
+            { title: "Implement React with TSX", description: "NULL" },
+            { title: "Implement React with TSX", description: "NULL" },
+            { title: "Implement React with TSX", description: "NULL" },
+            { title: "Implement React with TSX", description: "NULL" },
+            { title: "Implement React with TSX", description: "NULL" },
+            { title: "Implement React with TSX", description: "NULL" }
+        ],
+        'done': []
     }
+
 
     render() {
         return (
             <div className="App container">
                 <div className="row pt-4">
-                    <Box label='to-do' task={this.state.toDo}/>
-                    <Box label='doing' task={this.state.doing}/>
-                    <Box label='done' task={this.state.done}/>
+                    <Box label='toDo'
+                        task={this.state.toDo} onAdd={this.handleAddTask} />
+                    <Box label='doing'
+                        task={this.state.doing} onAdd={this.handleAddTask} />
+                    <Box label='done'
+                        task={this.state.done} onAdd={this.handleAddTask} />
                 </div>
             </div>
         );
     }
 
-    onAdd = (task) => {
+    handleAddTask = (task, status) => {
+        console.log('task', task);
+        //copy the  list of tasklist for a given status
+        const taskList = [...this.state[status]];
 
+        if (status === "toDo") {
+            this.setState({ toDo: taskList.concat([task]) })
+            console.log("state of task", this.state.toDo)
+        } else if (status === "doing") {
+            this.setState({ doing: taskList.concat([task]) })
+        } else {
+            this.setState({ doing: taskList.concat([task]) });
+        }
     }
 }
 

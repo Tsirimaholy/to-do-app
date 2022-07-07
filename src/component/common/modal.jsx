@@ -3,46 +3,69 @@ import './Modal.css'
 
 class Modal extends React.Component {
     state = {
-        title: '',
-        description: '',
-    }
-
-    handleSubmit = (event) => {
-        event.preventDefault();
-        console.log('Submitted')
+        title: "",
+        description: ''
     }
 
     render() {
-        let {show, title, status} = this.props;
         let classList = 'tag badge badge-';
+        let { show, title: modalTitle, status } = this.props;
 
         if (show === false) {
             return null;
         }
         return (
             <div className='my-modal container-sm' id={status}>
-                <strong className="title">{title}</strong>
+                <strong className="title">{modalTitle}</strong>
                 <span className={classList + this.getBadgeClass()}>{status}</span>
-                <form onSubmit={this.handleSubmit}>
+
+                <form onSubmit={(e) => {
+                    e.preventDefault();
+                    let task = {
+                        'title': this.state.title,
+                        'description': this.state.description
+                    };
+                    this.props.onAdd(task, status);
+                    console.log("=>", task, status);
+                }}>
                     <div className="form-group">
                         <label htmlFor="title">Task title</label>
-                        <br/>
-                        <input type="text" id='title ' className='form-control-md'/>
+                        <br />
+                        <input type="text"
+                            id='title'
+                            className='form-control-sm'
+                            onChange={(event) => {
+                                this.setState({ 'title': event.target.value });
+                            }}
+                            required={true}
+                        />
                     </div>
+
                     <div className="form-group">
                         <label htmlFor="description">Description</label>
-                        <br/>
-                        <input type="text" id='description' className='form-control-md'/>
+                        <br />
+                        <textarea
+                            id='description'
+                            className='form-control-sm'
+                            onChange={(event) => {
+                                this.setState({ description: event.target.value })
+                            }} />
                     </div>
                     <button className='btn btn-primary'>Confirm</button>
                 </form>
-                <button className="btn btn-outline-danger m-2 float-right" onClick={this.props.onShow}>Close</button>
+                {/* close the modal */}
+                <button
+                    className="btn btn-outline-danger m-2 float-right"
+                    onClick={this.props.onShow}
+                >
+                    Close
+                </button>
             </div>
         );
     }
 
     getBadgeClass = () => {
-        if (this.props.status === 'to-do') return 'secondary';
+        if (this.props.status === 'toDo') return 'secondary';
         if (this.props.status === 'doing') return 'primary';
         return 'success';
     }

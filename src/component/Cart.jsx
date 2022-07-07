@@ -2,31 +2,27 @@ import React from "react";
 import './Cart.css'
 
 class Cart extends React.Component {
-    state = {}
-
-    constructor(props) {
-        super(props);
-        this.state = { status: this.props.status }
-    }
-
-
     render() {
         let { title, description } = this.props;
 
         return (
-            <div className='cart p-1 '>
-                <strong className="title">{title}</strong>
+            <div className='cart p-2 '>
+                <h4 className="title">{title}</h4>
                 <div className="description">{description}</div>
-                <label htmlFor="status">status</label>
-                <select name="status" id="status" className=''>
-                    {this.generatePossibleValue(this.state)}
+                <label htmlFor="status">status:</label>
+                <select
+                    name="status"
+                    id="status" 
+                    className='form-control form-custom-control-label'
+                    >
+                    {this.generatePossibleValue(this.props)}
                 </select>
             </div>
         );
     }
 
-    generatePossibleValue = ({status}) => {
-        let possibleValue = ["to-do", "doing", "done"];
+    generatePossibleValue = ({ status }) => {
+        let possibleValue = ["toDo", "doing", "done"];
         const indexOfCurrentStatus = possibleValue.indexOf(status);
         possibleValue.splice(indexOfCurrentStatus, 1);
 

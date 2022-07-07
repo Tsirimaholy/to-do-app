@@ -2,17 +2,20 @@
     background-color: gray;
     padding-top: 2%;
     padding-bottom: 2%;
-    border: #5e5e5e;
-}
-
-.box > .box-body {
-    overflow-y: scroll;
+    border: .5em solid #1a1a1a;
+    border-radius: .9em;
 }
 
 .box-header {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 1.2rem;
 }
+.box-body  {
+    height: 100vh;
+    overflow-y: scroll;
+}
+
 
 .box-header > .add-btn {
     /*float: right;*/

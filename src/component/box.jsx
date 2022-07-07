@@ -12,31 +12,35 @@ class Box extends Component {
 
     render() {
         let { show } = this.state;
-        let { task: tasks, label } = this.props;
-        return (
-                <div className='Box col-4 container'>
-                    <Modal title='New task'
-                        status={label}
-                        show={show}
-                        onShow={this.handleShow}
-                    />
-                    <div className="box-header">
-                        <strong className="label">{label}</strong>
-                        <div className="btn btn-dark bi-plus add-btn text-white-50"
-                            onClick={this.handleShow}/>
-                    </div>
-                    <div className="box-body">
-                        {tasks.map(task => (
-                            <Cart
-                                key={task.title + Math.random(task.description)}
-                                title={task.title}
-                                description={task.description}
-                                status={label}
-                            />
-                        ))}
-                    </div>
+        let { task: tasks, label, onAdd } = this.props;
 
+        return (
+            <div className='Box col-4 '>
+                <Modal title='New task'
+                    status={label}
+                    show={show}
+                    onShow={this.handleShow}
+                    onAdd={onAdd}
+                />
+                <div className="box-header">
+                    <h2 className='label'>{label}</h2>
+                    <div className="btn btn-dark bi-plus add-btn text-white-50"
+                        onClick={this.handleShow} />
                 </div>
+                <div className="box-body">
+                    {/* in case if there are no task */}
+                    {this.defaultValues()}
+                    {tasks.map(task => (
+                        <Cart
+                            key={tasks.indexOf(task)}
+                            title={task.title}
+                            description={task.description}
+                            status={label}
+                        />
+                    ))}
+                </div>
+
+            </div>
         )
             ;
     }
@@ -47,6 +51,15 @@ class Box extends Component {
             this.setState({ show: true });
         } else this.setState({ show: false })
         // console.log('after', this.state.show)
+    }
+
+    defaultValues = () => {
+        if (this.props.task.length <= 0) {
+            return (
+                <div className="text-black-50 font-weight-light center">
+                    Create a task by clicking on the plus button
+                </div>);
+        }
     }
 }
 
