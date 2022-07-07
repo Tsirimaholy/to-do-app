@@ -46,10 +46,6 @@ class Modal extends React.Component {
         if (this.props.status === 'doing') return 'primary';
         return 'success';
     }
-
-    handleClick = (modal) => {
-        this.setState({show: false})
-    }
 }
 
 export default Modal;
