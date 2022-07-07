@@ -1,0 +1,20 @@
+.Box {
+    background-color: gray;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border: #5e5e5e;
+}
+
+.box > .box-body {
+    overflow-y: scroll;
+}
+
+.box-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.box-header > .add-btn {
+    /*float: right;*/
+    /*margin-bottom: 1em;*/
+}
