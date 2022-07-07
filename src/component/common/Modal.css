@@ -1,0 +1,12 @@
+.my-modal {
+    position: absolute;
+    z-index: 999;
+    background-color: #4e555b;
+    color: white;
+}
+
+.tag{
+    float: right;
+    margin: 3%;
+}
+
