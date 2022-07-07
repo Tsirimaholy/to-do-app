@@ -1,0 +1,21 @@
+.cart{
+    border: 1px solid wheat;
+    border-radius: 3%;
+    background-color: #1b1e21;
+    color: wheat;
+    margin: 0.5em;
+}
+
+.cart>.description{
+    color: rgba(151, 151, 151, 0.93);
+}
+
+.cart>*{
+    margin:0.5em;
+}
+
+label[for='status']{
+    font-size: small;
+    color: white;
+    font-weight: bold;
+}
