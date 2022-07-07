@@ -6,14 +6,12 @@ class Cart extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {status: this.props.status}
+        this.state = { status: this.props.status }
     }
 
 
     render() {
-        let {title, description} = this.props;
-        let {status} = this.state;
-
+        let { title, description } = this.props;
 
         return (
             <div className='cart p-1 '>
@@ -21,12 +19,25 @@ class Cart extends React.Component {
                 <div className="description">{description}</div>
                 <label htmlFor="status">status</label>
                 <select name="status" id="status" className=''>
-                    <option value={status}>{status}</option>
-                    <option value={status}>{status}</option>
-                    <option value={status}>{status}</option>
+                    {this.generatePossibleValue(this.state)}
                 </select>
             </div>
         );
+    }
+
+    generatePossibleValue = ({status}) => {
+        let possibleValue = ["to-do", "doing", "done"];
+        const indexOfCurrentStatus = possibleValue.indexOf(status);
+        possibleValue.splice(indexOfCurrentStatus, 1);
+
+
+        return (
+            <>
+                <option value={status}>{status}</option>
+                <option value={possibleValue[0]}>{possibleValue[0]}</option>
+                <option value={possibleValue[1]}>{possibleValue[1]}</option>
+            </>
+        )
     }
 }
 
