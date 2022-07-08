@@ -15,7 +15,12 @@ class Modal extends React.Component {
             return null;
         }
         return (
-            <div className='my-modal container-sm' id={status}>
+            <div className='my-modal container-sm ' id={status}>
+                <button
+                    className="btn btn-outline-danger m-2 float-right bi bi-x"
+                    onClick={this.props.onShow}
+                >
+                </button>
                 <strong className="title">{modalTitle}</strong>
                 <span className={classList + this.getBadgeClass()}>{status}</span>
 
@@ -26,7 +31,6 @@ class Modal extends React.Component {
                         'description': this.state.description
                     };
                     this.props.onAdd(task, status);
-                    console.log("=>", task, status);
                 }}>
                     <div className="form-group">
                         <label htmlFor="title">Task title</label>
@@ -54,12 +58,7 @@ class Modal extends React.Component {
                     <button className='btn btn-primary'>Confirm</button>
                 </form>
                 {/* close the modal */}
-                <button
-                    className="btn btn-outline-danger m-2 float-right"
-                    onClick={this.props.onShow}
-                >
-                    Close
-                </button>
+
             </div>
         );
     }

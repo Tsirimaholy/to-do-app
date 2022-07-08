@@ -5,6 +5,9 @@
     margin: 0.5em;
 }
 
+.cart:hover{
+    cursor: grab;
+}
 .cart>.description{
     color: rgba(151, 151, 151, 0.93);
 }

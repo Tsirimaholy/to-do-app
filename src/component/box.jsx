@@ -12,7 +12,7 @@ class Box extends Component {
 
     render() {
         let { show } = this.state;
-        let { task: tasks, label, onAdd } = this.props;
+        let { task: tasks, label, onAdd, onStatusChange } = this.props;
 
         return (
             <div className='Box col-4 '>
@@ -36,6 +36,7 @@ class Box extends Component {
                             title={task.title}
                             description={task.description}
                             status={label}
+                            onStatusChange={onStatusChange}
                         />
                     ))}
                 </div>

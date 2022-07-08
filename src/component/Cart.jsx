@@ -3,18 +3,19 @@ import './Cart.css'
 
 class Cart extends React.Component {
     render() {
-        let { title, description } = this.props;
+        let { title, description, onStatusChange } = this.props;
 
         return (
-            <div className='cart p-2 '>
+            <div className='cart p-2' draggable={true}>
                 <h4 className="title">{title}</h4>
                 <div className="description">{description}</div>
                 <label htmlFor="status">status:</label>
                 <select
                     name="status"
-                    id="status" 
+                    id="status"
                     className='form-control form-custom-control-label'
-                    >
+                    onChange={(e) => onStatusChange(title, description, this.props.status, e.target.value) }
+                >
                     {this.generatePossibleValue(this.props)}
                 </select>
             </div>
